@@ -4,212 +4,222 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="Central de Serviços de Tecnologia da Informação da Prefeitura Municipal de Olho d'Água das Cunhãs">
-  <title>CHAMADO T.I. | Central de Serviços</title>
+  <meta name="description" content="Central de Serviços de Tecnologia da Informação - Prefeitura Municipal de Olho d'Água das Cunhãs">
+  <title>CHAMADO T.I. 3.0 | Central de Serviços</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.webmanifest">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand-area">
-        <div class="brand-symbol">TI</div>
-        <div class="brand-copy">
-          <strong>CHAMADO T.I.</strong>
-          <span>Central de Serviços</span>
-        </div>
-      </div>
+  <div id="bootScreen" class="boot-screen">
+    <div class="boot-card">
+      <div class="boot-logo">TI</div>
+      <strong>CHAMADO T.I.</strong>
+      <span>Carregando Central de Serviços...</span>
+    </div>
+  </div>
 
-      <div class="sidebar-label">ATENDIMENTO</div>
-      <nav class="sidebar-nav">
-        <button class="nav-item active" data-page="dashboard">
-          <span class="nav-icon">⌂</span><span>Painel</span>
-        </button>
-        <button class="nav-item" data-page="chamados">
-          <span class="nav-icon">▤</span><span>Chamados</span><span class="nav-count" id="navOpenCount">0</span>
-        </button>
-        <button class="nav-item" data-page="novo">
-          <span class="nav-icon">＋</span><span>Abrir chamado</span>
-        </button>
-      </nav>
-
-      <div class="sidebar-label">GESTÃO</div>
-      <nav class="sidebar-nav">
-        <button class="nav-item" data-page="relatorios">
-          <span class="nav-icon">◫</span><span>Relatórios</span>
-        </button>
-        <button class="nav-item" data-page="config">
-          <span class="nav-icon">⚙</span><span>Configurações</span>
-        </button>
-      </nav>
-
-      <div class="sidebar-card">
-        <span class="live-dot"></span>
+  <section id="loginView" class="login-view hidden">
+    <div class="login-hero">
+      <div class="login-brand">
+        <div class="seal">TI</div>
         <div>
-          <strong>Serviço operacional</strong>
-          <small>Central de T.I. ativa</small>
+          <span>Prefeitura Municipal de Olho d'Água das Cunhãs</span>
+          <h1>Central de Serviços de T.I.</h1>
         </div>
       </div>
+      <div class="hero-copy">
+        <span class="eyebrow">ATENDIMENTO DIGITAL</span>
+        <h2>Suporte técnico organizado, rastreável e transparente.</h2>
+        <p>Abra solicitações, acompanhe o atendimento e mantenha todo o histórico do suporte de Tecnologia da Informação em um único lugar.</p>
+        <div class="hero-features">
+          <div><b>01</b><span>Protocolo automático</span></div>
+          <div><b>02</b><span>Acompanhamento por status</span></div>
+          <div><b>03</b><span>Controle de SLA</span></div>
+        </div>
+      </div>
+      <small class="hero-footer">Secretaria Municipal de Administração • Setor de Tecnologia da Informação</small>
+    </div>
 
-      <div class="sidebar-footer">
-        <strong>Prefeitura Municipal</strong>
-        <span>Olho d'Água das Cunhãs • MA</span>
-        <small>Setor de Tecnologia da Informação</small>
-        <div class="version">CHAMADO T.I. • v2.0</div>
+    <div class="login-panel">
+      <div class="login-card">
+        <div class="login-card-head">
+          <span class="eyebrow dark">ACESSO AO SISTEMA</span>
+          <h2>Entrar</h2>
+          <p>Use seu e-mail institucional e senha cadastrada.</p>
+        </div>
+        <form id="loginForm" class="login-form">
+          <label>E-mail
+            <input id="loginEmail" type="email" autocomplete="username" required placeholder="nome@prefeitura.gov.br">
+          </label>
+          <label>Senha
+            <div class="password-wrap">
+              <input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Sua senha">
+              <button type="button" class="icon-btn" id="togglePassword" aria-label="Mostrar senha">◉</button>
+            </div>
+          </label>
+          <button class="btn primary wide" type="submit">Entrar na Central</button>
+        </form>
+        <button id="demoLoginBtn" class="btn subtle wide hidden" type="button">Entrar em modo demonstração</button>
+        <div class="login-status" id="loginStatus"></div>
+        <p class="login-help">Problemas de acesso? Procure o Setor de T.I.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <div class="brandmark">TI</div>
+        <div><strong>CHAMADO T.I.</strong><span>Central de Serviços 3.0</span></div>
+      </div>
+
+      <div class="workspace-label">ATENDIMENTO</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span><span>Visão geral</span></button>
+        <button class="nav-item" data-page="tickets"><span class="nav-icon">▤</span><span>Chamados</span><span class="nav-count" id="navOpenCount">0</span></button>
+        <button class="nav-item" data-page="new-ticket"><span class="nav-icon">＋</span><span>Novo chamado</span></button>
+      </nav>
+
+      <div class="workspace-label staff-only">GESTÃO</div>
+      <nav class="nav-list staff-only">
+        <button class="nav-item" data-page="reports"><span class="nav-icon">◫</span><span>Relatórios</span></button>
+        <button class="nav-item admin-only" data-page="users"><span class="nav-icon">♙</span><span>Usuários</span></button>
+        <button class="nav-item" data-page="settings"><span class="nav-icon">⚙</span><span>Configurações</span></button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="backend-pill"><span id="backendDot" class="status-dot"></span><div><strong id="backendLabel">Verificando...</strong><small id="backendDetail">Backend</small></div></div>
+        <div class="sidebar-user">
+          <div class="avatar" id="sidebarAvatar">D</div>
+          <div class="sidebar-user-copy"><strong id="sidebarUserName">Usuário</strong><span id="sidebarUserRole">Perfil</span></div>
+          <button class="icon-btn dark" id="logoutBtn" title="Sair">↪</button>
+        </div>
       </div>
     </aside>
 
-    <main class="workspace">
+    <main class="main-area">
       <header class="topbar">
         <div class="topbar-left">
-          <button class="icon-btn mobile-menu" id="menuBtn" aria-label="Abrir menu">☰</button>
-          <div>
-            <div class="breadcrumb">CENTRAL DE SERVIÇOS / <span id="breadcrumbCurrent">PAINEL</span></div>
-            <h1 id="pageTitle">Painel de atendimento</h1>
-          </div>
+          <button class="icon-btn mobile-menu" id="menuBtn">☰</button>
+          <div><span class="breadcrumb">Central de Serviços / <b id="breadcrumbPage">Visão geral</b></span><h1 id="pageTitle">Visão geral</h1></div>
         </div>
-        <div class="topbar-right">
-          <button class="icon-btn" title="Atualizar painel" onclick="renderAll()">↻</button>
-          <div class="user-divider"></div>
-          <div class="user-box">
-            <div class="user-copy"><strong>Dill</strong><span>Administrador T.I.</span></div>
-            <div class="avatar">D</div>
-          </div>
+        <div class="topbar-actions">
+          <div class="realtime-chip"><span class="pulse"></span><span id="realtimeText">Tempo real</span></div>
+          <button class="btn primary compact" id="topNewTicketBtn">＋ Novo chamado</button>
         </div>
       </header>
 
-      <div class="content-area">
-        <section id="dashboard" class="section active">
+      <div class="page-container">
+        <section id="dashboard" class="page active">
           <div class="page-intro">
-            <div>
-              <span class="eyebrow">VISÃO OPERACIONAL</span>
-              <h2>Central de atendimento</h2>
-              <p>Monitore prioridades, prazos e a fila de suporte técnico em um só lugar.</p>
-            </div>
-            <button class="btn btn-primary" onclick="openNewTicket()"><span>＋</span> Novo chamado</button>
+            <div><span class="eyebrow dark">PAINEL OPERACIONAL</span><h2>Olá, <span id="welcomeName">Dill</span>.</h2><p id="dashboardSubtitle">Aqui está o panorama do atendimento de T.I. neste momento.</p></div>
+            <div class="intro-meta"><span id="todayLabel"></span><small>Atualização automática</small></div>
           </div>
 
-          <div class="kpi-grid">
-            <article class="kpi-card accent-blue">
-              <div class="kpi-top"><span class="kpi-label">Chamados abertos</span><span class="kpi-icon">▤</span></div>
-              <strong id="statOpen">0</strong>
-              <div class="kpi-meta"><span id="openToday">0 hoje</span><span>aguardando triagem</span></div>
-            </article>
-            <article class="kpi-card accent-amber">
-              <div class="kpi-top"><span class="kpi-label">Em atendimento</span><span class="kpi-icon">◴</span></div>
-              <strong id="statDoing">0</strong>
-              <div class="kpi-meta"><span>Fila ativa</span><span>em andamento</span></div>
-            </article>
-            <article class="kpi-card accent-red">
-              <div class="kpi-top"><span class="kpi-label">SLA em risco</span><span class="kpi-icon">!</span></div>
-              <strong id="statSlaRisk">0</strong>
-              <div class="kpi-meta"><span>Requer atenção</span><span>prazo operacional</span></div>
-            </article>
-            <article class="kpi-card accent-green">
-              <div class="kpi-top"><span class="kpi-label">Resolvidos</span><span class="kpi-icon">✓</span></div>
-              <strong id="statDone">0</strong>
-              <div class="kpi-meta"><span id="resolutionRate">0%</span><span>taxa de conclusão</span></div>
-            </article>
+          <div class="metrics-grid">
+            <article class="metric-card"><div class="metric-head"><span>Abertos</span><i class="metric-icon blue">▤</i></div><strong id="metricOpen">0</strong><small>Aguardando atendimento</small></article>
+            <article class="metric-card"><div class="metric-head"><span>Em atendimento</span><i class="metric-icon amber">◷</i></div><strong id="metricDoing">0</strong><small>Em execução pela equipe</small></article>
+            <article class="metric-card"><div class="metric-head"><span>SLA em risco</span><i class="metric-icon red">!</i></div><strong id="metricRisk">0</strong><small>Exigem atenção imediata</small></article>
+            <article class="metric-card"><div class="metric-head"><span>Resolvidos</span><i class="metric-icon green">✓</i></div><strong id="metricDone">0</strong><small>Atendimentos concluídos</small></article>
+            <article class="metric-card"><div class="metric-head"><span>Dentro do SLA</span><i class="metric-icon violet">%</i></div><strong id="metricSla">100%</strong><small>Índice de cumprimento</small></article>
           </div>
 
           <div class="dashboard-grid">
-            <div class="panel queue-panel">
-              <div class="panel-header">
-                <div><span class="panel-kicker">FILA PRIORITÁRIA</span><h3>Chamados que exigem atenção</h3></div>
-                <button class="link-btn" onclick="goTo('chamados')">Ver todos →</button>
-              </div>
-              <div class="table-wrap">
-                <table class="data-table compact-table">
-                  <thead><tr><th>Chamado</th><th>Solicitação</th><th>Setor</th><th>Prioridade</th><th>SLA</th><th>Status</th></tr></thead>
-                  <tbody id="recentBody"></tbody>
-                </table>
-              </div>
-            </div>
-
-            <div class="panel side-panel">
-              <div class="panel-header"><div><span class="panel-kicker">DESEMPENHO</span><h3>Nível de serviço</h3></div></div>
-              <div class="service-score">
-                <div class="score-ring" id="scoreRing"><span id="scoreValue">0%</span></div>
-                <div><strong>Chamados dentro do SLA</strong><p>Indicador calculado com base nos prazos por prioridade.</p></div>
-              </div>
-              <div class="mini-metrics">
-                <div><span>Tempo médio aberto</span><strong id="avgOpenTime">0h</strong></div>
-                <div><span>Críticos ativos</span><strong id="statCritical">0</strong></div>
-              </div>
-              <div class="panel-separator"></div>
-              <div class="activity-head"><strong>Atividade recente</strong><button class="text-icon-btn" onclick="renderActivity()">↻</button></div>
-              <div id="activityList" class="activity-list"></div>
-            </div>
-          </div>
-
-          <div class="quick-grid">
-            <button class="quick-card" onclick="openNewTicket()"><span class="quick-icon">＋</span><div><strong>Abrir chamado</strong><small>Registrar nova demanda de T.I.</small></div><span>›</span></button>
-            <button class="quick-card" onclick="goTo('chamados');setQuickFilter('Em atendimento')"><span class="quick-icon">◴</span><div><strong>Fila em atendimento</strong><small>Acompanhar demandas em andamento</small></div><span>›</span></button>
-            <button class="quick-card" onclick="goTo('relatorios')"><span class="quick-icon">▥</span><div><strong>Relatórios</strong><small>Consultar indicadores e produtividade</small></div><span>›</span></button>
+            <article class="panel span-2">
+              <div class="panel-head"><div><span class="panel-kicker">FILA DE ATENDIMENTO</span><h3>Chamados prioritários</h3></div><button class="text-btn" data-go="tickets">Ver todos →</button></div>
+              <div class="table-wrap"><table class="data-table"><thead><tr><th>Protocolo</th><th>Solicitação</th><th>Setor</th><th>Prioridade</th><th>SLA</th><th>Status</th></tr></thead><tbody id="priorityTableBody"></tbody></table></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><span class="panel-kicker">DESEMPENHO</span><h3>SLA por prioridade</h3></div></div>
+              <div class="panel-body" id="slaSummary"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><span class="panel-kicker">ATIVIDADE</span><h3>Movimentações recentes</h3></div></div>
+              <div class="panel-body"><div class="timeline compact" id="activityTimeline"></div></div>
+            </article>
+            <article class="panel span-2">
+              <div class="panel-head"><div><span class="panel-kicker">DISTRIBUIÇÃO</span><h3>Chamados por secretaria</h3></div></div>
+              <div class="panel-body" id="departmentBars"></div>
+            </article>
           </div>
         </section>
 
-        <section id="chamados" class="section">
-          <div class="page-intro">
-            <div><span class="eyebrow">GESTÃO DE DEMANDAS</span><h2>Chamados</h2><p>Consulte, filtre e acompanhe toda a operação de suporte.</p></div>
-            <div class="page-actions"><button class="btn btn-secondary" onclick="exportCSV()">⇩ Exportar CSV</button><button class="btn btn-primary" onclick="openNewTicket()">＋ Novo chamado</button></div>
-          </div>
-
-          <div class="filter-bar">
-            <div class="search-field"><span>⌕</span><input id="search" placeholder="Buscar por número, assunto, solicitante, setor..." oninput="renderTickets()"></div>
-            <select id="filterStatus" onchange="renderTickets()"><option value="">Todos os status</option><option>Aberto</option><option>Em atendimento</option><option>Aguardando</option><option>Resolvido</option></select>
-            <select id="filterPriority" onchange="renderTickets()"><option value="">Todas prioridades</option><option>Baixa</option><option>Média</option><option>Alta</option><option>Crítica</option></select>
-            <select id="filterDept" onchange="renderTickets()"><option value="">Todos os setores</option></select>
-            <button class="btn btn-ghost" onclick="clearFilters()">Limpar</button>
-          </div>
-
-          <div class="panel">
-            <div class="panel-header table-panel-header">
-              <div><h3>Fila de chamados</h3><span class="result-count" id="countTickets">0 registros</span></div>
-              <div class="legend"><span><i class="legend-dot critical"></i>Crítico</span><span><i class="legend-dot risk"></i>SLA em risco</span></div>
+        <section id="tickets" class="page">
+          <div class="page-heading"><div><span class="eyebrow dark">CENTRAL DE CHAMADOS</span><h2>Chamados</h2><p>Consulte, filtre e acompanhe os atendimentos registrados.</p></div><div class="heading-actions"><button class="btn" id="exportCsvBtn">Exportar CSV</button><button class="btn primary" data-go="new-ticket">＋ Abrir chamado</button></div></div>
+          <article class="panel">
+            <div class="filter-bar">
+              <div class="search-box"><span>⌕</span><input id="ticketSearch" placeholder="Pesquisar protocolo, assunto, solicitante..."></div>
+              <select id="statusFilter"><option value="">Todos os status</option><option value="aberto">Aberto</option><option value="atendimento">Em atendimento</option><option value="aguardando">Aguardando</option><option value="resolvido">Resolvido</option><option value="cancelado">Cancelado</option></select>
+              <select id="priorityFilter"><option value="">Todas prioridades</option><option value="critica">Crítica</option><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option></select>
+              <select id="departmentFilter"><option value="">Todas as secretarias</option></select>
             </div>
-            <div class="table-wrap">
-              <table class="data-table">
-                <thead><tr><th>Chamado</th><th>Solicitação</th><th>Solicitante</th><th>Setor</th><th>Prioridade</th><th>SLA</th><th>Status</th><th>Atualização</th></tr></thead>
-                <tbody id="ticketsBody"></tbody>
-              </table>
-            </div>
-          </div>
+            <div class="list-summary"><span id="ticketResultCount">0 chamados</span><button class="text-btn" id="clearFiltersBtn">Limpar filtros</button></div>
+            <div class="table-wrap"><table class="data-table tickets-table"><thead><tr><th>Protocolo</th><th>Solicitação</th><th>Solicitante</th><th>Secretaria</th><th>Prioridade</th><th>SLA</th><th>Status</th><th>Atualização</th></tr></thead><tbody id="ticketsTableBody"></tbody></table></div>
+          </article>
         </section>
 
-        <section id="novo" class="section">
-          <div class="page-intro"><div><span class="eyebrow">NOVA SOLICITAÇÃO</span><h2>Abrir chamado</h2><p>Preencha as informações abaixo para registrar uma demanda de suporte.</p></div></div>
-          <div class="form-layout">
-            <div class="panel form-panel"><div class="panel-header"><div><span class="step-chip">01</span><h3>Dados da solicitação</h3></div></div><div class="panel-body" id="inlineForm"></div></div>
-            <aside class="form-help">
-              <div class="help-card"><span class="help-icon">i</span><div><strong>Preencha com clareza</strong><p>Quanto mais detalhes forem informados, mais rápido o T.I. consegue identificar a solução.</p></div></div>
-              <div class="help-card"><span class="help-icon">!</span><div><strong>Prioridade crítica</strong><p>Use apenas quando o problema interromper um serviço essencial ou afetar vários usuários.</p></div></div>
-              <div class="sla-guide"><strong>Prazos de referência</strong><div><span>Crítica</span><b>4h</b></div><div><span>Alta</span><b>8h</b></div><div><span>Média</span><b>24h</b></div><div><span>Baixa</span><b>48h</b></div></div>
+        <section id="new-ticket" class="page">
+          <div class="page-heading"><div><span class="eyebrow dark">NOVA SOLICITAÇÃO</span><h2>Abrir chamado</h2><p>Forneça informações claras para agilizar o atendimento do T.I.</p></div></div>
+          <form id="newTicketForm" class="ticket-form-layout">
+            <article class="panel form-main">
+              <div class="panel-head"><div><span class="step-number">01</span><h3>Informações da solicitação</h3></div></div>
+              <div class="panel-body form-grid">
+                <label class="field full"><span>Assunto *</span><input name="subject" required maxlength="120" placeholder="Ex.: Computador da recepção não liga"></label>
+                <label class="field"><span>Categoria *</span><select name="category" id="categorySelect" required></select></label>
+                <label class="field"><span>Prioridade *</span><select name="priority" required><option value="media">Média</option><option value="baixa">Baixa</option><option value="alta">Alta</option><option value="critica">Crítica</option></select></label>
+                <label class="field full"><span>Descrição detalhada *</span><textarea name="description" required maxlength="4000" placeholder="Descreva o problema, mensagens exibidas e quando começou..."></textarea><small>Quanto mais detalhes, mais rápido será o diagnóstico.</small></label>
+              </div>
+              <div class="panel-head subhead"><div><span class="step-number">02</span><h3>Local e equipamento</h3></div></div>
+              <div class="panel-body form-grid">
+                <label class="field"><span>Secretaria / Setor *</span><select name="department_id" id="newTicketDepartment" required></select></label>
+                <label class="field"><span>Contato</span><input name="contact" placeholder="Telefone / ramal"></label>
+                <label class="field"><span>Local</span><input name="location" placeholder="Prédio, unidade ou sala"></label>
+                <label class="field"><span>Equipamento</span><input name="equipment" placeholder="PC, notebook, impressora..."></label>
+                <label class="field"><span>Patrimônio</span><input name="asset_tag" placeholder="Número patrimonial"></label>
+                <label class="field"><span>Anexos</span><input id="newTicketFiles" type="file" multiple accept="image/*,.pdf,.txt,.doc,.docx,.xls,.xlsx"><small>Até 10 MB por arquivo.</small></label>
+              </div>
+              <div class="form-actions"><button class="btn" type="reset">Limpar</button><button class="btn primary" type="submit">Registrar chamado</button></div>
+            </article>
+            <aside class="form-side">
+              <article class="info-card"><span class="info-icon">i</span><div><h3>Classificação de prioridade</h3><p><b>Crítica:</b> serviço essencial parado.</p><p><b>Alta:</b> impacto relevante no trabalho.</p><p><b>Média:</b> problema com alternativa temporária.</p><p><b>Baixa:</b> melhoria, instalação ou orientação.</p></div></article>
+              <article class="sla-card"><span>SLA previsto</span><strong id="newTicketSlaPreview">24 horas</strong><small>Prazo de referência conforme a prioridade.</small></article>
             </aside>
-          </div>
+          </form>
         </section>
 
-        <section id="relatorios" class="section">
-          <div class="page-intro"><div><span class="eyebrow">GESTÃO E INDICADORES</span><h2>Relatórios</h2><p>Visão consolidada da operação e distribuição das demandas.</p></div><button class="btn btn-secondary" onclick="exportCSV()">⇩ Exportar dados</button></div>
-          <div class="report-kpis">
-            <div><span>Total de chamados</span><strong id="reportTotal">0</strong></div>
-            <div><span>Resolvidos</span><strong id="reportResolved">0</strong></div>
-            <div><span>Dentro do SLA</span><strong id="reportSla">0%</strong></div>
-            <div><span>Setores atendidos</span><strong id="reportDepts">0</strong></div>
+        <section id="reports" class="page staff-only">
+          <div class="page-heading"><div><span class="eyebrow dark">GESTÃO E INDICADORES</span><h2>Relatórios</h2><p>Indicadores operacionais para acompanhamento do suporte.</p></div><button class="btn" id="reportExportBtn">Exportar CSV</button></div>
+          <div class="metrics-grid reports-metrics">
+            <article class="metric-card"><div class="metric-head"><span>Total</span></div><strong id="reportTotal">0</strong><small>Chamados registrados</small></article>
+            <article class="metric-card"><div class="metric-head"><span>Tempo médio</span></div><strong id="reportAvgTime">—</strong><small>Até resolução</small></article>
+            <article class="metric-card"><div class="metric-head"><span>SLA cumprido</span></div><strong id="reportSla">100%</strong><small>Dos finalizados</small></article>
+            <article class="metric-card"><div class="metric-head"><span>Pendentes</span></div><strong id="reportPending">0</strong><small>Ainda não finalizados</small></article>
           </div>
           <div class="reports-grid">
-            <div class="panel"><div class="panel-header"><div><span class="panel-kicker">DISTRIBUIÇÃO</span><h3>Chamados por setor</h3></div></div><div class="panel-body" id="deptReport"></div></div>
-            <div class="panel"><div class="panel-header"><div><span class="panel-kicker">CATEGORIAS</span><h3>Tipos de demanda</h3></div></div><div class="panel-body" id="catReport"></div></div>
+            <article class="panel"><div class="panel-head"><div><span class="panel-kicker">SECRETARIAS</span><h3>Volume por setor</h3></div></div><div class="panel-body" id="reportDepartments"></div></article>
+            <article class="panel"><div class="panel-head"><div><span class="panel-kicker">CATEGORIAS</span><h3>Principais demandas</h3></div></div><div class="panel-body" id="reportCategories"></div></article>
+            <article class="panel"><div class="panel-head"><div><span class="panel-kicker">STATUS</span><h3>Situação dos chamados</h3></div></div><div class="panel-body" id="reportStatuses"></div></article>
+            <article class="panel"><div class="panel-head"><div><span class="panel-kicker">PRIORIDADES</span><h3>Nível de criticidade</h3></div></div><div class="panel-body" id="reportPriorities"></div></article>
           </div>
-          <div class="panel status-report"><div class="panel-header"><div><span class="panel-kicker">FLUXO</span><h3>Distribuição por status</h3></div></div><div class="panel-body status-cards" id="statusReport"></div></div>
         </section>
 
-        <section id="config" class="section">
-          <div class="page-intro"><div><span class="eyebrow">ADMINISTRAÇÃO</span><h2>Configurações</h2><p>Preferências e informações técnicas da central de serviços.</p></div></div>
+        <section id="users" class="page admin-only">
+          <div class="page-heading"><div><span class="eyebrow dark">ADMINISTRAÇÃO</span><h2>Usuários</h2><p>Gerencie acessos de solicitantes, técnicos e administradores.</p></div><button class="btn primary" id="newUserBtn">＋ Novo usuário</button></div>
+          <article class="panel">
+            <div class="filter-bar users-filter"><div class="search-box"><span>⌕</span><input id="userSearch" placeholder="Pesquisar nome ou secretaria..."></div><select id="userRoleFilter"><option value="">Todos os perfis</option><option value="requester">Solicitante</option><option value="technician">Técnico</option><option value="admin">Administrador</option></select></div>
+            <div class="table-wrap"><table class="data-table"><thead><tr><th>Usuário</th><th>Secretaria</th><th>Perfil</th><th>Situação</th><th>Cadastro</th></tr></thead><tbody id="usersTableBody"></tbody></table></div>
+          </article>
+        </section>
+
+        <section id="settings" class="page staff-only">
+          <div class="page-heading"><div><span class="eyebrow dark">SISTEMA</span><h2>Configurações</h2><p>Informações técnicas e parâmetros da Central de Serviços.</p></div></div>
           <div class="settings-grid">
-            <div class="settings-card"><div class="settings-icon">⌘</div><div><strong>Dados da demonstração</strong><p>Os dados desta versão ficam armazenados localmente no navegador.</p><div class="settings-actions"><button class="btn btn-secondary" onclick="seed(true)">Restaurar exemplos</button><button class="btn btn-danger" onclick="clearAll()">Limpar dados</button></div></div></div>
-            <div class="settings-card"><div class="settings-icon">☁</div><div><strong>Banco de dados central</strong><p>Estrutura visual preparada para integração com autenticação e banco online na próxima etapa.</p><span class="coming-badge">PRÓXIMA ETAPA</span></div></div>
-            <div class="settings-card"><div class="settings-icon">◉</div><div><strong>Identidade institucional</strong><p>Prefeitura Municipal de Olho d'Água das Cunhãs • Setor de Tecnologia da Informação.</p></div></div>
-            <div class="settings-card"><div class="settings-icon">✓</div><div><strong>Controle de SLA</strong><p>Crítica 4h • Alta 8h • Média 24h • Baixa 48h.</p></div></div>
+            <article class="panel"><div class="panel-head"><h3>Ambiente</h3></div><div class="panel-body settings-list"><div><span>Versão</span><b>3.0</b></div><div><span>Banco de dados</span><b id="settingsBackend">—</b></div><div><span>Sincronização</span><b id="settingsRealtime">—</b></div><div><span>Usuário atual</span><b id="settingsUser">—</b></div></div></article>
+            <article class="panel"><div class="panel-head"><h3>Política de SLA</h3></div><div class="panel-body settings-list"><div><span>Crítica</span><b>4 horas</b></div><div><span>Alta</span><b>8 horas</b></div><div><span>Média</span><b>24 horas</b></div><div><span>Baixa</span><b>48 horas</b></div></div></article>
+            <article class="panel span-2"><div class="panel-head"><h3>Sobre esta instalação</h3></div><div class="panel-body"><p class="muted-copy">A versão 3.0 foi preparada para operar com autenticação, banco PostgreSQL, armazenamento privado de anexos e atualização em tempo real. O acesso aos dados é controlado por políticas de segurança no banco.</p></div></article>
           </div>
         </section>
       </div>
@@ -217,8 +227,10 @@
   </div>
 
   <div id="modalRoot"></div>
-  <div id="toast" class="toast hidden"></div>
-  <div id="mobileOverlay" class="mobile-overlay" onclick="closeSidebar()"></div>
+  <div id="toastRoot" class="toast-root"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
