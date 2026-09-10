@@ -5,3 +5,4 @@ document.write('<script src="app-render.js"><\/script>');
 document.write('<script src="app-actions.js"><\/script>');
 document.write('<script src="app-utils.js"><\/script>');
 document.write('<script src="username-auth.js"><\/script>');
+document.write('<script src="admin-user-actions.js"><\/script>');
