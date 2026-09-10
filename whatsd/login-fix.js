@@ -65,10 +65,5 @@
         }
       }
     }, true);
-
-    const mapProfileScript = document.createElement('script');
-    mapProfileScript.src = 'map-profile.js?v=1';
-    mapProfileScript.defer = true;
-    document.body.appendChild(mapProfileScript);
   });
 })();
