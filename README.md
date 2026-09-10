@@ -1,65 +1,97 @@
-# CHAMADO T.I.
+# CHAMADO T.I. 3.0
 
 Central de Serviços de Tecnologia da Informação da Prefeitura Municipal de Olho d'Água das Cunhãs.
 
-## Versão 2.0
+## O que mudou na versão 3.0
 
-A versão 2.0 recebeu uma reformulação completa de interface e fluxo de atendimento, com foco em uso institucional e gestão operacional.
+A versão 3.0 transforma o projeto em uma aplicação multiusuário preparada para produção, mantendo o front-end no GitHub Pages e usando Supabase como backend.
 
-### Recursos atuais
+### Recursos
 
-- Dashboard profissional de atendimento
-- Indicadores de chamados abertos, em atendimento e resolvidos
-- Controle de SLA por prioridade
-- Identificação automática de chamados em risco ou atrasados
-- Prioridades: Baixa, Média, Alta e Crítica
-- Prazos de referência: 48h, 24h, 8h e 4h
-- Fila prioritária de chamados
-- Abertura de chamados com dados de solicitante, setor, local e patrimônio
-- Categorias de suporte de T.I.
-- Edição de status e prioridade
-- Histórico completo de atendimento
-- Notas técnicas por chamado
-- Registro da solução aplicada
-- Encerramento de chamado
-- Pesquisa e filtros avançados
-- Relatórios por setor, categoria e status
-- Indicador de atendimento dentro do SLA
+- Login com e-mail e senha
+- Perfis: Solicitante, Técnico e Administrador
+- Banco PostgreSQL centralizado
+- Chamados compartilhados entre computadores e secretarias
+- Atualização em tempo real
+- Numeração automática de protocolo `TI-AAAA-00000`
+- Controle de SLA: Crítica 4h, Alta 8h, Média 24h e Baixa 48h
+- Fila prioritária
+- Histórico de movimentações
+- Notas internas exclusivas da equipe de T.I.
+- Atribuição de técnico responsável
+- Alteração de prioridade e status
+- Anexos privados de até 10 MB
+- Links temporários para abrir anexos
+- Relatórios e indicadores operacionais
 - Exportação CSV
+- Gestão de usuários pelo Administrador
 - Interface responsiva para computador, tablet e celular
-- Identidade visual institucional
+- Modo demonstração enquanto o backend não estiver configurado
 
-## Armazenamento atual
+## Arquitetura
 
-Nesta etapa os dados são persistidos no navegador através de `localStorage`.
+```text
+GitHub Pages
+    |
+    | Supabase JS + chave pública anon/publishable
+    v
+Supabase Auth
+Supabase PostgreSQL + RLS
+Supabase Realtime
+Supabase Storage privado
+Supabase Edge Function create-user
+```
 
-A aplicação também realiza migração automática dos dados salvos pela versão 1.0 para a estrutura da versão 2.0.
+A chave `service_role` nunca deve ficar no GitHub ou no navegador. Ela é usada somente no ambiente protegido da Edge Function.
 
-## Próxima etapa para produção
+## Arquivos principais
 
-Para utilização simultânea por várias secretarias e usuários, a arquitetura deverá receber:
+- `index.html` — interface da Central de Serviços
+- `style.css` — identidade visual responsiva
+- `config.js` — URL pública do projeto + chave anon/publishable
+- `app.js` — carregador dos módulos
+- `app-core.js` — autenticação, sessão e sincronização
+- `app-render.js` — dashboards, tabelas e relatórios
+- `app-actions.js` — chamados, histórico, anexos e usuários
+- `app-utils.js` — SLA, utilitários e modo demonstração
+- `manifest.webmanifest` — configuração PWA
+- `supabase/schema.sql` — banco, triggers, RLS, Storage e Realtime
+- `supabase/bootstrap-admin.sql` — promoção do primeiro administrador
+- `supabase/functions/create-user/index.ts` — criação segura de usuários
 
-- autenticação de usuários;
-- perfis de acesso para solicitante, técnico e administrador;
-- banco de dados centralizado;
-- anexos de imagens e documentos;
-- notificações;
-- recuperação de senha;
-- trilha de auditoria no servidor;
-- regras de segurança e backup.
+## Implantação do Supabase
 
-O front-end atual foi organizado para permitir essa evolução sem necessidade de refazer a interface.
+1. Crie ou escolha um projeto Supabase.
+2. Execute `supabase/schema.sql` no SQL Editor.
+3. Crie o primeiro usuário em **Authentication > Users**.
+4. Execute `supabase/bootstrap-admin.sql`, substituindo `SEU_EMAIL_ADMIN` pelo e-mail do primeiro administrador.
+5. Faça deploy da função `supabase/functions/create-user`.
+6. No arquivo `config.js`, informe apenas:
+   - `SUPABASE_URL`
+   - `SUPABASE_ANON_KEY` (anon/publishable)
+7. Em produção, mantenha o cadastro público de usuários desabilitado; novos usuários devem ser criados pelo Administrador dentro da Central.
 
 ## GitHub Pages
 
-A interface estática pode ser publicada pelo GitHub Pages usando:
+Publicação recomendada:
 
 - Branch: `main`
 - Diretório: `/ (root)`
 
-Arquivos principais:
+Após o backend ser conectado, qualquer usuário autorizado poderá acessar o mesmo endereço do GitHub Pages, entrar com sua conta e trabalhar sobre o mesmo banco central.
 
-- `index.html`
-- `style.css`
-- `app.js`
-- `.nojekyll`
+## Segurança
+
+O banco utiliza Row Level Security (RLS):
+
+- solicitantes veem apenas seus próprios chamados;
+- técnicos e administradores veem todos os chamados;
+- apenas a equipe de T.I. altera status, prioridade e responsável;
+- notas internas são ocultadas dos solicitantes;
+- anexos são privados;
+- criação administrativa de usuários ocorre no servidor;
+- contas inativas não devem ter acesso aos dados.
+
+## Observação
+
+Enquanto `config.js` estiver sem as credenciais públicas do Supabase, o site inicia em **modo demonstração**, permitindo testar toda a interface sem afetar dados reais.
