@@ -55,7 +55,7 @@
 
   async function resetSystem(event){
     event.preventDefault();
-    if(!isAdmin() || !db || demoMode) return;
+    if(!isAdmin() || !db || demoMode || !authSession?.access_token) return;
 
     const button = event.submitter;
     const fd = new FormData(event.currentTarget);
@@ -64,9 +64,17 @@
 
     setButtonLoading(button,true,'Validando e apagando...');
     try{
-      const {data,error} = await db.functions.invoke('reset-system',{body:{password}});
-      if(error) throw error;
-      if(data?.error) throw new Error(data.error);
+      const response = await fetch(`${CONFIG.SUPABASE_URL}/functions/v1/reset-system`,{
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json',
+          'apikey':CONFIG.SUPABASE_ANON_KEY,
+          'Authorization':`Bearer ${authSession.access_token}`
+        },
+        body:JSON.stringify({password})
+      });
+      const data = await response.json().catch(()=>({}));
+      if(!response.ok) throw new Error(data?.error || 'Não foi possível zerar o sistema.');
 
       tickets = [];
       if(typeof inventoryItems !== 'undefined') inventoryItems = [];
@@ -83,8 +91,7 @@
       toast(`Sistema zerado: ${totalTickets} chamado(s) e ${totalItems} item(ns) de estoque removidos.`,'success');
     }catch(error){
       console.error(error);
-      const message = error?.context?.body?.error || error?.message || 'Não foi possível zerar o sistema.';
-      toast(message,'error');
+      toast(error?.message || 'Não foi possível zerar o sistema.','error');
     }finally{
       setButtonLoading(button,false,'Zerar definitivamente');
     }
