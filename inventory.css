@@ -1,0 +1,19 @@
+/* CHAMADO T.I. — Estoque administrativo */
+.inventory-metrics{grid-template-columns:repeat(4,1fr)}
+.inventory-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.inventory-toolbar .search-box{min-width:280px;flex:1}
+.stock-number{font-weight:800;font-size:14px;color:#26364f}
+.stock-number.low{color:var(--red)}
+.stock-unit{font-size:9px;color:#8e99aa;margin-left:3px}
+.stock-alert{display:inline-flex;align-items:center;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:800;background:#fff0f0;color:#b33737}
+.stock-ok{display:inline-flex;align-items:center;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:800;background:#e9f8f0;color:#147748}
+.inventory-actions{display:flex;gap:6px;align-items:center;white-space:nowrap}
+.btn.stock-in{color:#147748;border-color:#cfe8da;background:#f3fbf7}
+.btn.stock-out{color:#b33737;border-color:#f0d2d2;background:#fff7f7}
+.inventory-history-type{font-weight:800;font-size:9px;text-transform:uppercase;letter-spacing:.04em}
+.inventory-history-type.entrada{color:#147748}.inventory-history-type.baixa{color:#b33737}
+.inventory-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.inventory-form-grid .full{grid-column:1/-1}
+.inventory-note{padding:11px 12px;background:#f7f9fc;border:1px solid var(--line);border-radius:10px;color:#68758a;font-size:11px;line-height:1.5}
+@media(max-width:900px){.inventory-metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:650px){.inventory-metrics{grid-template-columns:1fr}.inventory-form-grid{grid-template-columns:1fr}.inventory-form-grid .full{grid-column:auto}.inventory-toolbar .search-box{min-width:100%}}
