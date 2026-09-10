@@ -8,35 +8,51 @@
     input.inputMode='numeric';
     input.pattern='[0-9]{4}';
     input.placeholder='0000';
+    input.autocomplete='new-password';
     input.addEventListener('input',()=>{
-      input.value=String(input.value||'').replace(/\D/g,'').slice(0,4);
+      const clean=String(input.value||'').replace(/\D/g,'').slice(0,4);
+      if(input.value!==clean) input.value=clean;
     });
   }
 
-  function apply(){
-    const first=$('firstAccessForm');
-    if(first){
-      configurePinInput(first.querySelector('input[name="password"]'));
-      configurePinInput(first.querySelector('input[name="confirm_password"]'));
-      const box=[...first.querySelectorAll('.access-info-box span')].find(el=>/mínimo 8|administrador não poderá visualizar/i.test(el.textContent||''));
-      if(box) box.textContent='A senha deve ter exatamente 4 números. O Administrador não poderá visualizar sua senha depois.';
-    }
-
-    const edit=$('editUserForm');
-    if(edit){
-      configurePinInput(edit.querySelector('input[name="password"]'));
-      configurePinInput(edit.querySelector('input[name="confirm_password"]'));
+  function configureFirstAccess(){
+    const first=document.getElementById('firstAccessForm');
+    if(!first) return;
+    configurePinInput(first.querySelector('input[name="password"]'));
+    configurePinInput(first.querySelector('input[name="confirm_password"]'));
+    const info=first.querySelector('.access-info-box span');
+    if(info && info.dataset.pinTextConfigured!=='1'){
+      info.dataset.pinTextConfigured='1';
+      info.textContent='A senha deve ter exatamente 4 números. O Administrador não poderá visualizar sua senha depois.';
     }
   }
 
+  function configureEditUser(){
+    const edit=document.getElementById('editUserForm');
+    if(!edit) return;
+    configurePinInput(edit.querySelector('input[name="password"]'));
+    configurePinInput(edit.querySelector('input[name="confirm_password"]'));
+  }
+
+  function apply(){
+    configureFirstAccess();
+    configureEditUser();
+  }
+
   window.addEventListener('DOMContentLoaded',()=>{
-    const login=$('loginPassword');
+    const login=document.getElementById('loginPassword');
     if(login){
       login.placeholder='Sua senha';
-      login.setAttribute('aria-description','Contas configuradas no novo padrão usam senha de 4 dígitos.');
+      login.setAttribute('inputmode','numeric');
     }
+
     apply();
-    const observer=new MutationObserver(apply);
-    observer.observe(document.body,{childList:true,subtree:true});
+
+    // Observa apenas a área de modais. Evita o loop infinito que travava a página.
+    const modalRoot=document.getElementById('modalRoot');
+    if(modalRoot){
+      const observer=new MutationObserver(()=>requestAnimationFrame(apply));
+      observer.observe(modalRoot,{childList:true,subtree:false});
+    }
   });
 })();
