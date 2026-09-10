@@ -1,7 +1,7 @@
 // CHAMADO T.I. 3.0
-// Preencha SOMENTE com a URL pública do projeto e a chave anon/publishable.
-// Nunca coloque a service_role key neste arquivo ou no GitHub.
+// Somente dados públicos do Supabase. Nunca coloque service_role neste arquivo.
 window.CHAMADO_TI_CONFIG = {
-  SUPABASE_URL: '',
-  SUPABASE_ANON_KEY: ''
+  SUPABASE_URL: 'https://ecptjdykrzyiekunxylx.supabase.co',
+  SUPABASE_ANON_KEY: 'sb_publishable_7KNgN5uT6Mywv0rTYv3dtw_QQS7f1Of',
+  USERNAME_DOMAIN: 'chamado-ti.local'
 };
