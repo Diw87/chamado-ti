@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="map-profile.css?v=2">
 </head>
 <body>
   <div id="bootScreen" class="boot-screen">
@@ -68,7 +70,7 @@
     <aside id="sidebar" class="sidebar">
       <header class="sidebar-header">
         <div class="me-block">
-          <div id="meAvatar" class="avatar">D</div>
+          <div id="meAvatar" class="avatar" title="Meu perfil">D</div>
           <div class="me-copy">
             <strong id="meName">Usuário</strong>
             <span id="meUsername">@usuario</span>
@@ -82,11 +84,11 @@
 
       <div class="search-wrap">
         <span>⌕</span>
-        <input id="contactSearch" placeholder="Pesquisar conversa ou usuário">
+        <input id="contactSearch" placeholder="Pesquisar pessoa ou conversa">
       </div>
 
       <div class="sidebar-label">
-        <span>Conversas</span>
+        <span>Pessoas</span>
         <small id="contactCount">0</small>
       </div>
 
@@ -96,7 +98,7 @@
     <section id="chatEmpty" class="chat-empty">
       <div class="empty-mark">D</div>
       <h2>WhatsD</h2>
-      <p>Selecione uma pessoa para iniciar uma conversa.</p>
+      <p>Carregando mapa de usuários...</p>
       <span>Mensagens internas • acesso controlado</span>
     </section>
 
@@ -160,5 +162,7 @@
   <script src="config.js"></script>
   <script src="app.js"></script>
   <script src="login-fix.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="map-profile.js?v=2"></script>
 </body>
 </html>
