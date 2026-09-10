@@ -7,4 +7,5 @@ document.write('<script src="app-utils.js"><\/script>');
 document.write('<script src="username-auth.js"><\/script>');
 document.write('<script src="admin-user-actions.js"><\/script>');
 document.write('<script src="inventory.js"><\/script>');
-document.write('<script src="ui-shell.js?v=20260910-2"><\/script>');
+document.write('<script src="ui-shell.js?v=20260910-3"><\/script>');
+document.write('<script src="auth-shell-fix.js?v=20260910-1"><\/script>');
