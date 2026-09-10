@@ -10,3 +10,4 @@ document.write('<script src="inventory.js"><\/script>');
 document.write('<script src="ui-shell.js?v=20260910-3"><\/script>');
 document.write('<script src="auth-shell-fix.js?v=20260910-1"><\/script>');
 document.write('<script src="access-management.js?v=20260910-1"><\/script>');
+document.write('<script src="admin-edit-user.js?v=20260910-1"><\/script>');
