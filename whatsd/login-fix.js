@@ -3,13 +3,13 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('loginForm');
-    if (!form || !window.CHAMADO_TI_CONFIG || !window.supabase) return;
+    const config = window.WHATSD_CONFIG || window.CHAMADO_TI_CONFIG;
+    if (!form || !config || !window.supabase) return;
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       event.stopImmediatePropagation();
 
-      const config = window.CHAMADO_TI_CONFIG;
       const username = String(document.getElementById('loginUsername')?.value || '').trim().toLowerCase();
       const password = String(document.getElementById('loginPassword')?.value || '');
       const status = document.getElementById('loginStatus');
@@ -65,5 +65,10 @@
         }
       }
     }, true);
+
+    const mapProfileScript = document.createElement('script');
+    mapProfileScript.src = 'map-profile.js?v=1';
+    mapProfileScript.defer = true;
+    document.body.appendChild(mapProfileScript);
   });
 })();
