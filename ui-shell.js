@@ -1,12 +1,15 @@
 // CHAMADO T.I. — menu lateral oculto + favicon
-window.addEventListener('DOMContentLoaded',()=>{
-  const css=document.createElement('link');
-  css.rel='stylesheet';css.href='ui-shell.css';document.head.appendChild(css);
-
+(function prepareShellAssets(){
+  if(!document.querySelector('link[href="ui-shell.css"]')){
+    const css=document.createElement('link');
+    css.rel='stylesheet';css.href='ui-shell.css';document.head.appendChild(css);
+  }
   let favicon=document.querySelector('link[rel~="icon"]');
   if(!favicon){favicon=document.createElement('link');favicon.rel='icon';document.head.appendChild(favicon);}
   favicon.type='image/svg+xml';favicon.href='favicon.svg';
+})();
 
+window.addEventListener('DOMContentLoaded',()=>{
   const shell=$('appShell');
   const sidebar=$('sidebar');
   if(!shell||!sidebar)return;
