@@ -21,12 +21,16 @@ window.addEventListener('DOMContentLoaded',()=>{
 
   const setOpen=open=>{
     sidebar.classList.toggle('drawer-open',open);
-    toggle.classList.toggle('open',open);
     backdrop.classList.toggle('show',open);
-    toggle.setAttribute('aria-label',open?'Fechar menu lateral':'Abrir menu lateral');
+
+    // O botão T.I. só aparece quando o menu está fechado.
+    toggle.hidden=open;
+    toggle.setAttribute('aria-hidden',open?'true':'false');
+    toggle.setAttribute('aria-label','Abrir menu lateral');
   };
 
-  toggle.addEventListener('click',()=>setOpen(!sidebar.classList.contains('drawer-open')));
+  setOpen(false);
+  toggle.addEventListener('click',()=>setOpen(true));
   backdrop.addEventListener('click',()=>setOpen(false));
   sidebar.querySelector('.brandmark')?.addEventListener('click',()=>setOpen(false));
   sidebar.addEventListener('click',event=>{if(event.target.closest('.nav-item'))setOpen(false);});
