@@ -13,3 +13,5 @@ document.write('<script src="access-management.js?v=20260910-1"><\/script>');
 document.write('<script src="admin-edit-user.js?v=20260910-2"><\/script>');
 // Primeiro acesso usa um fluxo isolado e estável. O antigo observador de PIN foi removido.
 document.write('<script src="first-access-stable.js?v=20260910-1"><\/script>');
+// Zona de segurança do Administrador.
+document.write('<script src="danger-zone.js?v=20260910-1"><\/script>');
