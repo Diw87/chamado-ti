@@ -1,4 +1,4 @@
-// CHAMADO T.I. — edição administrativa de usuário e senha
+// CHAMADO T.I. — edição administrativa de usuário e senha de 4 dígitos
 (function(){
   const baseRenderUsers = renderUsers;
 
@@ -54,16 +54,20 @@
         <div class="modal-body"><div class="user-form">
           <div class="field full access-info-box"><b>${esc(user.full_name)}</b><span>${esc(user.department?.name||'Sem setor')} • ${esc(ROLE_LABEL[user.role]||user.role)}</span></div>
           <label class="field full"><span>Nome de usuário *</span><input name="username" required minlength="3" maxlength="32" autocomplete="off" value="${esc(user.username||'')}" placeholder="Ex.: saude01"><small>Este será o nome usado na tela de login.</small></label>
-          <label class="field"><span>Nova senha</span><input name="password" type="password" minlength="8" autocomplete="new-password" placeholder="Deixe em branco para manter"></label>
-          <label class="field"><span>Confirmar nova senha</span><input name="confirm_password" type="password" minlength="8" autocomplete="new-password" placeholder="Repita a nova senha"></label>
-          <div class="field full access-info-box"><b>Alteração de senha</b><span>O Administrador pode substituir a senha, mas a senha atual nunca é exibida. Se os campos de senha ficarem vazios, apenas o nome de usuário será alterado.</span></div>
+          <label class="field"><span>Nova senha — 4 dígitos</span><input name="password" type="password" minlength="4" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" autocomplete="new-password" placeholder="0000"></label>
+          <label class="field"><span>Confirmar senha</span><input name="confirm_password" type="password" minlength="4" maxlength="4" inputmode="numeric" pattern="[0-9]{4}" autocomplete="new-password" placeholder="0000"></label>
+          <div class="field full access-info-box"><b>Senha numérica</b><span>A senha deve conter exatamente 4 números. Se os campos ficarem vazios, apenas o nome de usuário será alterado.</span></div>
         </div></div>
         <div class="modal-footer"><button class="btn" type="button" data-modal-close>Cancelar</button><button class="btn primary" type="submit">Salvar alterações</button></div>
       </form>
     </div></div>`;
 
     bindModalClose();
-    $('editUserForm')?.addEventListener('submit',e=>saveUserAccess(e,user));
+    const form=$('editUserForm');
+    form?.querySelectorAll('input[name="password"],input[name="confirm_password"]').forEach(input=>{
+      input.addEventListener('input',()=>{input.value=input.value.replace(/\D/g,'').slice(0,4);});
+    });
+    form?.addEventListener('submit',e=>saveUserAccess(e,user));
   }
 
   async function saveUserAccess(event,user){
@@ -76,14 +80,16 @@
     if(!/^[a-z0-9._-]{3,32}$/.test(username)){
       toast('Nome de usuário inválido.','error');return;
     }
-    if(password && password.length<8){toast('A nova senha deve ter pelo menos 8 caracteres.','error');return;}
+    if(password && !/^\d{4}$/.test(password)){
+      toast('A nova senha deve ter exatamente 4 números.','error');return;
+    }
     if(password!==confirm){toast('As senhas não conferem.','error');return;}
 
     setButtonLoading(button,true,'Salvando...');
     try{
       if(demoMode){
         user.username=username;
-        if(password){user.must_set_password=false;user.active=true;}
+        if(password){user.must_set_password=false;user.active=true;user.pin_login=true;}
         if(user.id===currentProfile?.id) currentProfile.username=username;
         renderUsers();closeModal();toast('Usuário atualizado no modo demonstração.','success');return;
       }
