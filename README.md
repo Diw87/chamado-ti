@@ -56,6 +56,7 @@ A chave `service_role` nunca deve ficar no GitHub ou no navegador. Ela é usada 
 - `app-utils.js` — SLA, utilitários e modo demonstração
 - `manifest.webmanifest` — configuração PWA
 - `supabase/schema.sql` — banco, triggers, RLS, Storage e Realtime
+- `supabase/002_security_hardening.sql` — bloqueio de contas novas até ativação administrativa
 - `supabase/bootstrap-admin.sql` — promoção do primeiro administrador
 - `supabase/functions/create-user/index.ts` — criação segura de usuários
 
@@ -63,13 +64,14 @@ A chave `service_role` nunca deve ficar no GitHub ou no navegador. Ela é usada 
 
 1. Crie ou escolha um projeto Supabase.
 2. Execute `supabase/schema.sql` no SQL Editor.
-3. Crie o primeiro usuário em **Authentication > Users**.
-4. Execute `supabase/bootstrap-admin.sql`, substituindo `SEU_EMAIL_ADMIN` pelo e-mail do primeiro administrador.
-5. Faça deploy da função `supabase/functions/create-user`.
-6. No arquivo `config.js`, informe apenas:
+3. Execute `supabase/002_security_hardening.sql` imediatamente depois.
+4. Crie o primeiro usuário em **Authentication > Users**.
+5. Execute `supabase/bootstrap-admin.sql`, substituindo `SEU_EMAIL_ADMIN` pelo e-mail do primeiro administrador.
+6. Faça deploy da função `supabase/functions/create-user`.
+7. No arquivo `config.js`, informe apenas:
    - `SUPABASE_URL`
    - `SUPABASE_ANON_KEY` (anon/publishable)
-7. Em produção, mantenha o cadastro público de usuários desabilitado; novos usuários devem ser criados pelo Administrador dentro da Central.
+8. Em produção, mantenha o cadastro público de usuários desabilitado; novos usuários devem ser criados pelo Administrador dentro da Central.
 
 ## GitHub Pages
 
@@ -90,7 +92,8 @@ O banco utiliza Row Level Security (RLS):
 - notas internas são ocultadas dos solicitantes;
 - anexos são privados;
 - criação administrativa de usuários ocorre no servidor;
-- contas inativas não devem ter acesso aos dados.
+- novas contas começam inativas e precisam ser liberadas pelo fluxo administrativo;
+- contas inativas não acessam os dados operacionais.
 
 ## Observação
 
