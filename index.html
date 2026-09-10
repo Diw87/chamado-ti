@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="description" content="Sistema de chamados do Setor de Tecnologia da Informação">
+  <title>CHAMADO T.I. | Central de Suporte</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brandmark">TI</div><div><strong>CHAMADO T.I.</strong><small>Central de Suporte</small></div></div>
+      <nav>
+        <button class="active" data-page="dashboard">▦ <span>Painel</span></button>
+        <button data-page="chamados">◫ <span>Chamados</span></button>
+        <button data-page="novo">＋ <span>Abrir chamado</span></button>
+        <button data-page="relatorios">▤ <span>Relatórios</span></button>
+        <button data-page="config">⚙ <span>Configurações</span></button>
+      </nav>
+      <div class="sidefoot">Prefeitura Municipal de Olho d'Água das Cunhãs<br>Setor de Tecnologia da Informação<br><br><b>Versão 1.0</b></div>
+    </aside>
+
+    <main>
+      <header>
+        <div class="header-left"><button class="btn mobile-menu" id="menuBtn">☰</button><div><h1 id="pageTitle">Painel de atendimento</h1><p>Acompanhe e gerencie as demandas de T.I.</p></div></div>
+        <div class="userbox"><div><strong>Técnico T.I.</strong><small>Administrador</small></div><div class="avatar">D</div></div>
+      </header>
+
+      <div class="content">
+        <section id="dashboard" class="section active">
+          <div class="topline"><div><h2>Visão geral</h2><p>Resumo atualizado dos chamados registrados.</p></div><button class="btn primary" onclick="openNewTicket()">＋ Novo chamado</button></div>
+          <div class="stats">
+            <article class="stat"><span>Abertos</span><strong id="statOpen">0</strong><small>Aguardando atendimento</small></article>
+            <article class="stat"><span>Em atendimento</span><strong id="statDoing">0</strong><small>Sendo tratados agora</small></article>
+            <article class="stat"><span>Críticos</span><strong id="statCritical">0</strong><small>Prioridade imediata</small></article>
+            <article class="stat"><span>Resolvidos</span><strong id="statDone">0</strong><small>Atendimentos concluídos</small></article>
+          </div>
+          <div class="grid2">
+            <div class="panel"><div class="panelhead"><h3>Chamados recentes</h3><button class="btn" onclick="goTo('chamados')">Ver todos</button></div><div class="tablewrap"><table><thead><tr><th>Nº</th><th>Solicitação</th><th>Setor</th><th>Prioridade</th><th>Status</th><th>Data</th></tr></thead><tbody id="recentBody"></tbody></table></div></div>
+            <div class="panel"><div class="panelhead"><h3>Atividade recente</h3></div><div class="panelbody"><div id="activityList" class="activity-list"></div></div></div>
+          </div>
+        </section>
+
+        <section id="chamados" class="section">
+          <div class="topline"><div><h2>Todos os chamados</h2><p>Pesquise, filtre e acompanhe cada atendimento.</p></div><div class="actions"><button class="btn" onclick="exportCSV()">Exportar CSV</button><button class="btn primary" onclick="openNewTicket()">＋ Novo chamado</button></div></div>
+          <div class="panel"><div class="panelhead"><h3>Central de chamados</h3><span id="countTickets" class="muted"></span></div><div class="panelbody"><div class="filters"><input id="search" placeholder="Pesquisar nº, assunto ou solicitante..." oninput="renderTickets()"><select id="filterStatus" onchange="renderTickets()"><option value="">Todos os status</option><option>Aberto</option><option>Em atendimento</option><option>Aguardando</option><option>Resolvido</option></select><select id="filterPriority" onchange="renderTickets()"><option value="">Todas prioridades</option><option>Baixa</option><option>Média</option><option>Alta</option><option>Crítica</option></select><select id="filterDept" onchange="renderTickets()"><option value="">Todos os setores</option></select></div></div><div class="tablewrap"><table><thead><tr><th>Nº</th><th>Solicitação</th><th>Solicitante</th><th>Setor</th><th>Categoria</th><th>Prioridade</th><th>Status</th><th>Data</th></tr></thead><tbody id="ticketsBody"></tbody></table></div></div>
+        </section>
+
+        <section id="novo" class="section"><div class="topline"><div><h2>Abrir novo chamado</h2><p>Registre uma nova solicitação para o setor de T.I.</p></div></div><div class="panel"><div class="panelbody" id="inlineForm"></div></div></section>
+
+        <section id="relatorios" class="section">
+          <div class="topline"><div><h2>Relatórios</h2><p>Indicadores rápidos por setor e categoria.</p></div><button class="btn" onclick="exportCSV()">Exportar CSV</button></div>
+          <div class="grid2"><div class="panel"><div class="panelhead"><h3>Chamados por setor</h3></div><div class="panelbody" id="deptReport"></div></div><div class="panel"><div class="panelhead"><h3>Chamados por categoria</h3></div><div class="panelbody" id="catReport"></div></div></div>
+        </section>
+
+        <section id="config" class="section">
+          <div class="topline"><div><h2>Configurações</h2><p>Ajustes desta versão inicial.</p></div></div>
+          <div class="settings-grid"><div class="settings-box"><h3>Armazenamento</h3><p>Esta primeira versão salva os chamados neste navegador usando localStorage.</p><div class="actions"><button class="btn" onclick="seed(true)">Restaurar exemplos</button><button class="btn danger" onclick="clearAll()">Limpar chamados</button></div></div><div class="settings-box"><h3>Próxima etapa</h3><p>Para uso simultâneo em várias secretarias, a próxima versão terá login, banco de dados central e permissões por usuário.</p></div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div id="modalRoot"></div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+</html>
