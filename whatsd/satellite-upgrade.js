@@ -136,7 +136,6 @@
   function installMapModeControl(map, originalTileLayer) {
     if (!map || document.querySelector('.wd-map-mode-control')) return;
     const L = window.L;
-
     const streetLayer = originalTileLayer.call(L, STREET_URL, {
       maxZoom: 18,
       updateWhenIdle: true,
@@ -170,7 +169,6 @@
     if (!map || !['satellite', 'street'].includes(mode) || activeMode === mode) return;
     const sat = window.WHATSD_SATELLITE_LAYER;
     const street = window.WHATSD_STREET_LAYER;
-
     if (mode === 'satellite') {
       if (street && map.hasLayer(street)) map.removeLayer(street);
       if (sat && !map.hasLayer(sat)) sat.addTo(map);
@@ -204,12 +202,10 @@
     if (!client) return;
     const { data: sessionData } = await client.auth.getSession();
     if (!sessionData?.session) return;
-
     const { data, error } = await client.from('chat_profiles')
       .select('id,full_name,username,avatar_url,role,active')
       .eq('active', true);
     if (error) return;
-
     profilesByName.clear();
     (data || []).forEach(profile => profilesByName.set(profile.full_name, profile));
     scheduleDecorate();
@@ -268,21 +264,17 @@
       const profile = profilesByName.get(el.dataset.whatsdName || '');
       if (profile?.avatar_url) setPhotoAvatar(el.querySelector('.wd-pin-avatar'), profile.avatar_url);
     });
-
     document.querySelectorAll('.contact-item').forEach(item => {
       const name = item.querySelector('.contact-name')?.textContent?.trim();
       const profile = profilesByName.get(name || '');
       if (profile?.avatar_url) setPhotoAvatar(item.querySelector('.avatar'), profile.avatar_url);
     });
-
     const myName = document.getElementById('meName')?.textContent?.trim();
     const me = profilesByName.get(myName || '');
     if (me?.avatar_url) setPhotoAvatar(document.getElementById('meAvatar'), me.avatar_url);
-
     const chatName = document.getElementById('chatName')?.textContent?.trim();
     const chatProfile = profilesByName.get(chatName || '');
     if (chatProfile?.avatar_url) setPhotoAvatar(document.getElementById('chatAvatar'), chatProfile.avatar_url);
-
     const profileName = document.querySelector('#userProfileCard .profile-ident strong')?.textContent?.trim();
     const profile = profilesByName.get(profileName || '');
     if (profile?.avatar_url) setPhotoAvatar(document.querySelector('#userProfileCard .profile-card-head .avatar'), profile.avatar_url);
@@ -301,6 +293,7 @@
   }
 
   document.addEventListener('DOMContentLoaded', () => {
+    if (!localStorage.getItem('whatsd-auth-session')) return;
     ensureLeafletAssets();
     installObserver();
     scheduleInitialProfiles();
