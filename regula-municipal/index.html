@@ -1,87 +1,107 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f6f5f">
-<title>Regula Municipal</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:#f4f7f8;color:#17252a}button,input,select,textarea{font:inherit}.hidden{display:none!important}.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#0b5f53,#154d64);padding:24px}.login-card{width:min(420px,100%);background:#fff;border-radius:22px;padding:34px;box-shadow:0 30px 70px rgba(0,0,0,.2)}.logo{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:#0f6f5f;color:#fff;font-weight:900}.login-card h1{margin:14px 0 5px}.login-card p{color:#66767c;margin:0 0 24px}.login-card label,.field label{display:block;font-size:12px;font-weight:800;margin:12px 0 6px}.login-card input,.field input,.field select,.field textarea,.toolbar input,.toolbar select{width:100%;border:1px solid #dfe7e9;border-radius:10px;padding:11px 12px;background:#fff;outline:none}.login-card input:focus,.field input:focus,.field select:focus,.field textarea:focus,.toolbar input:focus,.toolbar select:focus{border-color:#0f6f5f;box-shadow:0 0 0 3px rgba(15,111,95,.12)}.primary,.ghost,.mini,.nav,.link{border:0;cursor:pointer}.primary{background:#0f6f5f;color:#fff;border-radius:10px;padding:11px 15px;font-weight:800}.primary:hover{background:#09594c}.ghost{background:#edf5f3;color:#0f6f5f;border-radius:10px;padding:11px 15px;font-weight:800}.full{width:100%;margin-top:18px}.login-card small{display:block;text-align:center;color:#66767c;margin-top:14px}.app{display:flex;min-height:100vh}.side{position:fixed;inset:0 auto 0 0;width:260px;background:#102f35;color:#fff;padding:18px 14px;display:flex;flex-direction:column;z-index:20}.brand{display:flex;gap:12px;align-items:center;padding:6px 8px 22px}.brand .logo{width:42px;height:42px;border-radius:12px}.brand strong{display:block}.brand span{display:block;color:#acc2c5;font-size:12px;margin-top:3px}.navs{display:grid;gap:5px}.nav{background:transparent;color:#cbdadb;text-align:left;padding:12px 13px;border-radius:10px;display:flex;gap:10px;align-items:center}.nav.active,.nav:hover{background:#1a4650;color:#fff}.side-foot{margin-top:auto;border-top:1px solid #28505a;padding:16px 8px 4px;display:flex;justify-content:space-between;align-items:center;font-size:13px}.side-foot button{background:transparent;border:0;color:#bad0d3;cursor:pointer}.main{margin-left:260px;width:calc(100% - 260px)}.top{height:82px;background:#fff;border-bottom:1px solid #e1e8ea;display:flex;align-items:center;padding:0 28px;gap:18px;position:sticky;top:0;z-index:10}.top h2{margin:0;font-size:22px}.top p{margin:4px 0 0;color:#66767c;font-size:12px}.top-actions{margin-left:auto;display:flex;gap:9px}.menu{display:none;border:0;background:#eef3f4;border-radius:8px;padding:8px 10px;cursor:pointer}.content{padding:26px}.page{display:none}.page.active{display:block}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px}.stat,.panel{background:#fff;border:1px solid #edf1f2;border-radius:14px;box-shadow:0 10px 30px rgba(18,53,61,.08)}.stat{padding:20px}.stat span{color:#66767c;font-size:13px}.stat strong{display:block;font-size:31px;margin:7px 0}.stat em{font-style:normal;color:#819095;font-size:12px}.grid2{display:grid;grid-template-columns:1.55fr 1fr;gap:18px}.panel{padding:20px}.panel-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:18px}.panel h3{margin:0 0 4px;font-size:17px}.panel-head p{margin:0;color:#66767c;font-size:12px}.toolbar{display:flex;gap:10px;margin-bottom:14px}.toolbar input{flex:1}.toolbar select{width:220px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:680px}th,td{text-align:left;padding:11px 9px;border-bottom:1px solid #e1e8ea;font-size:13px}th{font-size:11px;color:#617177;text-transform:uppercase;letter-spacing:.45px}.badge{display:inline-block;padding:5px 8px;border-radius:999px;font-size:11px;font-weight:900}.wait{background:#fff1cd;color:#7b5900}.analysis{background:#e5efff;color:#285da3}.ok{background:#def4e9;color:#126c43}.ret{background:#f2e8ff;color:#694293}.no{background:#ffe2e2;color:#9b2929}.high{background:#ffe0e0;color:#a31f1f}.medium{background:#fff0d6;color:#915a00}.low{background:#e4f4ea;color:#17643f}.mini{border:1px solid #dfe7e9;background:#fff;border-radius:8px;padding:6px 8px;font-size:12px}.row-actions{display:flex;gap:6px}.link{background:transparent;color:#0f6f5f;font-weight:800}.queue{display:grid;gap:12px}.queue-item{display:grid;grid-template-columns:90px 1fr 32px;gap:10px;align-items:center;font-size:13px}.bar{height:9px;background:#e8eeee;border-radius:99px;overflow:hidden}.bar span{display:block;height:100%;background:#0f6f5f}.agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.agenda-card{border:1px solid #e1e8ea;border-radius:12px;padding:16px}.agenda-card strong,.agenda-card span{display:block}.agenda-card span{color:#66767c;font-size:12px;margin:4px 0}.notice{padding:14px;border-radius:10px;background:#eef6f4;color:#355a52;line-height:1.55}.modal{position:fixed;inset:0;background:rgba(8,22,26,.58);display:grid;place-items:center;padding:20px;z-index:50}.modal-card{width:min(680px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:16px;padding:20px}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.modal-head h3{margin:0}.modal-head button{border:0;background:#f0f4f5;width:34px;height:34px;border-radius:8px;cursor:pointer;font-size:20px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field.full{grid-column:1/-1}.field textarea{min-height:90px;resize:vertical}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.toast{position:fixed;right:20px;bottom:20px;background:#18393e;color:#fff;padding:12px 16px;border-radius:10px;z-index:70;opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none}.toast.show{opacity:1;transform:translateY(0)}
-@media(max-width:1000px){.stats{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.agenda{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:760px){.side{transform:translateX(-100%);transition:.2s}.side.open{transform:translateX(0)}.main{margin-left:0;width:100%}.menu{display:block}.top{padding:0 14px}.content{padding:14px}.top-actions .ghost{display:none}.toolbar{flex-direction:column}.toolbar select{width:100%}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.agenda{grid-template-columns:1fr}}
-@media(max-width:460px){.stats{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a6c5c">
+  <meta name="description" content="Regula Municipal — gestão de pacientes, solicitações, fila e autorizações da regulação municipal.">
+  <title>Regula Municipal V2</title>
+  <link rel="stylesheet" href="v2.css?v=2.0.0">
 </head>
 <body>
-<div id="toast" class="toast"></div>
-<section id="login" class="login">
-  <div class="login-card">
-    <div class="logo">RM</div>
-    <h1>Regula Municipal</h1>
-    <p>Gestão de solicitações, filas e autorizações.</p>
-    <label>Usuário</label><input id="user" value="admin" autocomplete="username">
-    <label>Senha</label><input id="pass" value="admin123" type="password" autocomplete="current-password">
-    <button id="enter" class="primary full">Entrar</button>
-    <small>Demonstração: admin / admin123</small>
+  <div id="loading" class="loading hidden"><div class="spinner" aria-label="Carregando"></div></div>
+  <div id="toast" class="toast"></div>
+
+  <section id="authPage" class="auth-page">
+    <div class="auth-hero">
+      <div class="auth-logo">RM</div>
+      <h1>Regula Municipal</h1>
+      <p>Uma central de regulação municipal para organizar pacientes, solicitações, prioridades, filas, autorizações e agenda em um único lugar.</p>
+      <div class="feature-row">
+        <span class="feature-chip">Pacientes e CNS</span>
+        <span class="feature-chip">Fila por prioridade</span>
+        <span class="feature-chip">Mesa do regulador</span>
+        <span class="feature-chip">Histórico e auditoria</span>
+        <span class="feature-chip">Multiusuário</span>
+      </div>
+    </div>
+    <div class="auth-side">
+      <div id="loginBox" class="auth-card">
+        <h2>Acessar o sistema</h2>
+        <p>Entre com seu usuário e senha da Central de Regulação.</p>
+        <form id="loginForm">
+          <div class="field"><label>Usuário</label><input id="loginUser" autocomplete="username" required></div>
+          <div class="field"><label>Senha</label><input id="loginPass" type="password" autocomplete="current-password" required></div>
+          <button class="primary full" type="submit">Entrar</button>
+        </form>
+        <div class="auth-switch">Acesso restrito a usuários autorizados.</div>
+      </div>
+
+      <div id="setupBox" class="auth-card hidden">
+        <h2>Primeiro acesso</h2>
+        <p>Crie o administrador inicial do Regula Municipal.</p>
+        <form id="setupForm">
+          <div class="field"><label>Nome completo</label><input id="setupName" required></div>
+          <div class="field"><label>Usuário</label><input id="setupUser" minlength="3" required></div>
+          <div class="field"><label>Senha</label><input id="setupPass" type="password" minlength="8" required></div>
+          <div class="field"><label>Confirmar senha</label><input id="setupPass2" type="password" minlength="8" required></div>
+          <button class="primary full" type="submit">Criar administrador</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="app" class="app hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">RM</div>
+        <div><strong>Regula Municipal</strong><small>Central de Regulação</small></div>
+      </div>
+      <nav class="nav">
+        <button class="active" data-page="dashboard">▦ <span>Painel</span></button>
+        <button data-page="patients">♙ <span>Pacientes</span></button>
+        <button data-page="requests">▤ <span>Solicitações</span></button>
+        <button data-page="queue">☷ <span>Fila de espera</span></button>
+        <button data-page="regulation" data-regulate>✓ <span>Regulação</span></button>
+        <button data-page="agenda">◫ <span>Agenda</span></button>
+        <div class="sep"></div>
+        <button data-page="users" data-admin>♚ <span>Usuários</span></button>
+        <button data-page="reports">◩ <span>Relatórios</span></button>
+        <button data-page="account">⚙ <span>Minha conta</span></button>
+      </nav>
+      <div class="userbox">
+        <strong id="sideUser">Usuário</strong>
+        <small id="sideRole">Perfil</small>
+        <button id="logoutBtn">Sair do sistema</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="menu-btn">☰</button>
+        <div>
+          <h2 id="pageTitle">Painel</h2>
+          <p id="pageSubtitle"></p>
+        </div>
+        <div class="top-actions">
+          <button class="secondary" data-action="newPatient" data-write>+ Paciente</button>
+          <button class="primary" data-action="newRequest" data-write>+ Solicitação</button>
+        </div>
+      </header>
+      <section id="content" class="content"></section>
+    </main>
   </div>
-</section>
-<div id="app" class="app hidden">
-  <aside class="side" id="side">
-    <div class="brand"><div class="logo">RM</div><div><strong id="brandName">Regula Municipal</strong><span>Central de Regulação</span></div></div>
-    <div class="navs">
-      <button class="nav active" data-page="dashboard">▦ Painel</button>
-      <button class="nav" data-page="pacientes">♙ Pacientes</button>
-      <button class="nav" data-page="solicitacoes">▤ Solicitações</button>
-      <button class="nav" data-page="fila">☷ Fila de espera</button>
-      <button class="nav" data-page="agenda">◫ Agenda</button>
-      <button class="nav" data-page="autorizacoes">✓ Autorizações</button>
-      <button class="nav" data-page="relatorios">◩ Relatórios</button>
-      <button class="nav" data-page="configuracoes">⚙ Configurações</button>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle">Registro</h3>
+        <button id="modalClose" aria-label="Fechar">×</button>
+      </div>
+      <div id="modalBody"></div>
     </div>
-    <div class="side-foot"><span>Administrador</span><button id="logout">Sair</button></div>
-  </aside>
-  <main class="main">
-    <header class="top"><button class="menu" id="menu">☰</button><div><h2 id="title">Painel</h2><p id="today"></p></div><div class="top-actions"><button class="ghost" id="quickPatient">+ Paciente</button><button class="primary" id="quickRequest">+ Solicitação</button></div></header>
-    <div class="content">
-      <section class="page active" id="page-dashboard">
-        <div class="stats"><article class="stat"><span>Solicitações abertas</span><strong id="sOpen">0</strong><em>aguardando análise</em></article><article class="stat"><span>Fila de espera</span><strong id="sQueue">0</strong><em>pacientes aguardando</em></article><article class="stat"><span>Autorizadas</span><strong id="sAuth">0</strong><em>procedimentos liberados</em></article><article class="stat"><span>Prioridade alta</span><strong id="sHigh">0</strong><em>requer atenção</em></article></div>
-        <div class="grid2"><article class="panel"><div class="panel-head"><div><h3>Solicitações recentes</h3><p>Últimos registros enviados à regulação</p></div><button class="link" data-go="solicitacoes">Ver todas</button></div><div class="table-wrap"><table><thead><tr><th>Protocolo</th><th>Paciente</th><th>Procedimento</th><th>Status</th></tr></thead><tbody id="recent"></tbody></table></div></article><article class="panel"><div class="panel-head"><div><h3>Resumo da fila</h3><p>Distribuição por prioridade</p></div></div><div class="queue" id="queueSummary"></div></article></div>
-      </section>
-      <section class="page" id="page-pacientes"><article class="panel"><div class="panel-head"><div><h3>Pacientes</h3><p>Cadastro municipal</p></div><button class="primary" id="newPatient">+ Novo paciente</button></div><div class="toolbar"><input id="patientSearch" placeholder="Buscar por nome, CPF ou CNS..."></div><div class="table-wrap"><table><thead><tr><th>Nome</th><th>CPF</th><th>CNS</th><th>Nascimento</th><th>Telefone</th><th></th></tr></thead><tbody id="patients"></tbody></table></div></article></section>
-      <section class="page" id="page-solicitacoes"><article class="panel"><div class="panel-head"><div><h3>Solicitações</h3><p>Consultas, exames e procedimentos</p></div><button class="primary" id="newRequest">+ Nova solicitação</button></div><div class="toolbar"><input id="requestSearch" placeholder="Buscar protocolo, paciente ou procedimento..."><select id="statusFilter"><option value="">Todos os status</option><option>Aguardando</option><option>Em análise</option><option>Autorizada</option><option>Devolvida</option><option>Negada</option></select></div><div class="table-wrap"><table><thead><tr><th>Protocolo</th><th>Paciente</th><th>Procedimento</th><th>Prioridade</th><th>Data</th><th>Status</th><th></th></tr></thead><tbody id="requests"></tbody></table></div></article></section>
-      <section class="page" id="page-fila"><article class="panel"><div class="panel-head"><div><h3>Fila de espera</h3><p>Ordenada por prioridade e data</p></div></div><div class="table-wrap"><table><thead><tr><th>Posição</th><th>Paciente</th><th>Procedimento</th><th>Prioridade</th><th>Aguardando</th><th>Status</th></tr></thead><tbody id="queueTable"></tbody></table></div></article></section>
-      <section class="page" id="page-agenda"><article class="panel"><div class="panel-head"><div><h3>Agenda regulada</h3><p>Procedimentos autorizados</p></div></div><div class="agenda" id="agenda"></div></article></section>
-      <section class="page" id="page-autorizacoes"><article class="panel"><div class="panel-head"><div><h3>Autorizações</h3><p>Análise do regulador</p></div></div><div class="table-wrap"><table><thead><tr><th>Protocolo</th><th>Paciente</th><th>Procedimento</th><th>Prioridade</th><th>Status</th><th>Ações</th></tr></thead><tbody id="authTable"></tbody></table></div></article></section>
-      <section class="page" id="page-relatorios"><div class="stats"><article class="stat"><span>Total de pacientes</span><strong id="rPatients">0</strong><em>cadastrados</em></article><article class="stat"><span>Total de solicitações</span><strong id="rRequests">0</strong><em>registradas</em></article><article class="stat"><span>Autorizadas</span><strong id="rApproved">0</strong><em>concluídas</em></article><article class="stat"><span>Taxa de autorização</span><strong id="rRate">0%</strong><em>do total</em></article></div><article class="panel"><div class="panel-head"><div><h3>Backup</h3><p>Exporte os dados desta demonstração.</p></div></div><button class="primary" id="export">Exportar JSON</button></article></section>
-      <section class="page" id="page-configuracoes"><div class="grid2"><article class="panel"><div class="panel-head"><div><h3>Identificação</h3><p>Dados exibidos no sistema</p></div></div><div class="field"><label>Nome do sistema</label><input id="cfgName"></div><div class="field"><label>Órgão</label><input id="cfgOrg"></div><button class="primary" id="saveCfg" style="margin-top:14px">Salvar</button></article><article class="panel"><div class="panel-head"><div><h3>Versão</h3><p>Publicação de teste</p></div></div><div class="notice">Esta versão salva os dados apenas neste navegador. Para uso real com pacientes, a próxima etapa é conectar autenticação, banco Supabase, auditoria e regras de acesso.</div></article></div></section>
-    </div>
-  </main>
-</div>
-<div id="modal" class="modal hidden"><div class="modal-card"><div class="modal-head"><h3 id="modalTitle"></h3><button id="closeModal">×</button></div><form id="modalForm"></form></div></div>
-<script>
-const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], KEY='regula_municipal_web_v1';
-const seed={patients:[{id:1,name:'Maria de Sousa Lima',cpf:'123.456.789-00',cns:'898 0000 0000 001',birth:'1969-03-18',phone:'(98) 99999-1001'},{id:2,name:'João Pedro Almeida',cpf:'987.654.321-00',cns:'898 0000 0000 002',birth:'1983-11-02',phone:'(98) 98888-1002'},{id:3,name:'Ana Clara Ferreira',cpf:'456.789.123-00',cns:'898 0000 0000 003',birth:'1998-07-25',phone:'(98) 97777-1003'}],requests:[{id:1,protocol:'REG-2026-0001',patientId:1,procedure:'Consulta em Cardiologia',priority:'Alta',date:'2026-09-09',status:'Em análise',notes:'Hipertensão de difícil controle.'},{id:2,protocol:'REG-2026-0002',patientId:2,procedure:'Ressonância Magnética',priority:'Média',date:'2026-09-10',status:'Aguardando',notes:'Avaliação ortopédica.'},{id:3,protocol:'REG-2026-0003',patientId:3,procedure:'Consulta em Oftalmologia',priority:'Baixa',date:'2026-09-11',status:'Autorizada',notes:'Revisão anual.',scheduled:'2026-09-18T09:00'}],config:{name:'Regula Municipal',org:'Secretaria Municipal de Saúde'}};
-let db;try{db=JSON.parse(localStorage.getItem(KEY))||structuredClone(seed)}catch(e){db=structuredClone(seed)}
-const save=()=>{localStorage.setItem(KEY,JSON.stringify(db));renderAll()}, pby=id=>db.patients.find(p=>p.id===Number(id)), fmt=d=>d?new Date(d+'T12:00:00').toLocaleDateString('pt-BR'):'-';
-function toast(m){let t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
-function bs(s){let c={'Aguardando':'wait','Em análise':'analysis','Autorizada':'ok','Devolvida':'ret','Negada':'no'}[s]||'wait';return `<span class="badge ${c}">${s}</span>`}function bp(p){let c={'Alta':'high','Média':'medium','Baixa':'low'}[p]||'low';return `<span class="badge ${c}">${p}</span>`}
-const titles={dashboard:'Painel',pacientes:'Pacientes',solicitacoes:'Solicitações',fila:'Fila de espera',agenda:'Agenda regulada',autorizacoes:'Autorizações',relatorios:'Relatórios',configuracoes:'Configurações'};
-function showApp(){$('#login').classList.add('hidden');$('#app').classList.remove('hidden');$('#today').textContent=new Date().toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});renderAll()}
-$('#enter').onclick=()=>{if($('#user').value.trim()==='admin'&&$('#pass').value==='admin123'){sessionStorage.setItem('rm_auth','1');showApp()}else toast('Usuário ou senha inválidos.')};$('#pass').onkeydown=e=>{if(e.key==='Enter')$('#enter').click()};if(sessionStorage.getItem('rm_auth')==='1')showApp();$('#logout').onclick=()=>{sessionStorage.removeItem('rm_auth');location.reload()};
-function go(x){$$('.page').forEach(p=>p.classList.remove('active'));$('#page-'+x).classList.add('active');$$('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===x));$('#title').textContent=titles[x];$('#side').classList.remove('open');renderAll()}$$('.nav').forEach(b=>b.onclick=()=>go(b.dataset.page));$$('[data-go]').forEach(b=>b.onclick=()=>go(b.dataset.go));$('#menu').onclick=()=>$('#side').classList.toggle('open');
-function renderDashboard(){let open=db.requests.filter(r=>['Aguardando','Em análise'].includes(r.status)),auth=db.requests.filter(r=>r.status==='Autorizada');$('#sOpen').textContent=open.length;$('#sQueue').textContent=open.length;$('#sAuth').textContent=auth.length;$('#sHigh').textContent=open.filter(r=>r.priority==='Alta').length;$('#recent').innerHTML=[...db.requests].sort((a,b)=>b.id-a.id).slice(0,6).map(r=>`<tr><td>${r.protocol}</td><td>${pby(r.patientId)?.name||'-'}</td><td>${r.procedure}</td><td>${bs(r.status)}</td></tr>`).join('')||'<tr><td colspan="4">Nenhuma solicitação.</td></tr>';let total=Math.max(1,open.length);$('#queueSummary').innerHTML=['Alta','Média','Baixa'].map(p=>{let n=open.filter(r=>r.priority===p).length;return `<div class="queue-item"><strong>${p}</strong><div class="bar"><span style="width:${n/total*100}%"></span></div><b>${n}</b></div>`}).join('')}
-function renderPatients(){let q=($('#patientSearch')?.value||'').toLowerCase();let rows=db.patients.filter(p=>[p.name,p.cpf,p.cns].some(v=>v.toLowerCase().includes(q)));$('#patients').innerHTML=rows.map(p=>`<tr><td><strong>${p.name}</strong></td><td>${p.cpf}</td><td>${p.cns}</td><td>${fmt(p.birth)}</td><td>${p.phone}</td><td><button class="mini" onclick="newRequest(${p.id})">Solicitar</button></td></tr>`).join('')||'<tr><td colspan="6">Nenhum paciente.</td></tr>'}
-function renderRequests(){let q=($('#requestSearch')?.value||'').toLowerCase(),f=$('#statusFilter')?.value||'';let rows=db.requests.filter(r=>{let p=pby(r.patientId);return(!f||r.status===f)&&[r.protocol,r.procedure,p?.name||''].some(v=>v.toLowerCase().includes(q))}).sort((a,b)=>b.id-a.id);$('#requests').innerHTML=rows.map(r=>`<tr><td>${r.protocol}</td><td>${pby(r.patientId)?.name||'-'}</td><td>${r.procedure}</td><td>${bp(r.priority)}</td><td>${fmt(r.date)}</td><td>${bs(r.status)}</td><td><button class="mini" onclick="viewRequest(${r.id})">Abrir</button></td></tr>`).join('')||'<tr><td colspan="7">Nenhuma solicitação.</td></tr>'}
-function renderQueue(){let rank={Alta:1,Média:2,Baixa:3};let rows=db.requests.filter(r=>['Aguardando','Em análise'].includes(r.status)).sort((a,b)=>rank[a.priority]-rank[b.priority]||new Date(a.date)-new Date(b.date));$('#queueTable').innerHTML=rows.map((r,i)=>{let days=Math.max(0,Math.floor((new Date()-new Date(r.date+'T12:00:00'))/86400000));return `<tr><td><strong>#${i+1}</strong></td><td>${pby(r.patientId)?.name||'-'}</td><td>${r.procedure}</td><td>${bp(r.priority)}</td><td>${days} dia(s)</td><td>${bs(r.status)}</td></tr>`}).join('')||'<tr><td colspan="6">Fila vazia.</td></tr>'}
-function renderAgenda(){let rows=db.requests.filter(r=>r.status==='Autorizada');$('#agenda').innerHTML=rows.map(r=>`<article class="agenda-card"><strong>${r.procedure}</strong><span>Paciente: ${pby(r.patientId)?.name||'-'}</span><span>Protocolo: ${r.protocol}</span><span>Agendamento: ${r.scheduled?new Date(r.scheduled).toLocaleString('pt-BR'):'a definir'}</span>${bp(r.priority)}</article>`).join('')||'<p>Nenhum procedimento autorizado.</p>'}
-function renderAuth(){let rows=db.requests.filter(r=>['Aguardando','Em análise'].includes(r.status));$('#authTable').innerHTML=rows.map(r=>`<tr><td>${r.protocol}</td><td>${pby(r.patientId)?.name||'-'}</td><td>${r.procedure}</td><td>${bp(r.priority)}</td><td>${bs(r.status)}</td><td class="row-actions"><button class="mini" onclick="setStatus(${r.id},'Autorizada')">Autorizar</button><button class="mini" onclick="setStatus(${r.id},'Devolvida')">Devolver</button><button class="mini" onclick="setStatus(${r.id},'Negada')">Negar</button></td></tr>`).join('')||'<tr><td colspan="6">Nenhuma pendência.</td></tr>'}
-function renderReports(){let ok=db.requests.filter(r=>r.status==='Autorizada').length;$('#rPatients').textContent=db.patients.length;$('#rRequests').textContent=db.requests.length;$('#rApproved').textContent=ok;$('#rRate').textContent=db.requests.length?Math.round(ok/db.requests.length*100)+'%':'0%'}function renderCfg(){$('#cfgName').value=db.config.name;$('#cfgOrg').value=db.config.org;$('#brandName').textContent=db.config.name}function renderAll(){renderDashboard();renderPatients();renderRequests();renderQueue();renderAgenda();renderAuth();renderReports();renderCfg()}
-$('#patientSearch').oninput=renderPatients;$('#requestSearch').oninput=renderRequests;$('#statusFilter').onchange=renderRequests;$('#saveCfg').onclick=()=>{db.config.name=$('#cfgName').value.trim()||'Regula Municipal';db.config.org=$('#cfgOrg').value.trim()||'Secretaria Municipal de Saúde';save();toast('Configurações salvas.')};$('#export').onclick=()=>{let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.download='regula-municipal-backup.json';a.click()};
-function openModal(title,html,onSubmit){$('#modalTitle').textContent=title;$('#modalForm').innerHTML=html;$('#modal').classList.remove('hidden');$('#modalForm').onsubmit=e=>{e.preventDefault();onSubmit(new FormData(e.target))}}function closeModal(){$('#modal').classList.add('hidden')}$('#closeModal').onclick=closeModal;$('#modal').onclick=e=>{if(e.target.id==='modal')closeModal()};
-function newPatient(){openModal('Novo paciente',`<div class="form-grid"><div class="field full"><label>Nome completo</label><input name="name" required></div><div class="field"><label>CPF</label><input name="cpf" required></div><div class="field"><label>CNS</label><input name="cns" required></div><div class="field"><label>Data de nascimento</label><input name="birth" type="date" required></div><div class="field"><label>Telefone</label><input name="phone"></div></div><div class="modal-actions"><button type="button" class="ghost" onclick="closeModal()">Cancelar</button><button class="primary">Salvar paciente</button></div>`,fd=>{db.patients.push({id:Date.now(),name:fd.get('name'),cpf:fd.get('cpf'),cns:fd.get('cns'),birth:fd.get('birth'),phone:fd.get('phone')});save();closeModal();toast('Paciente cadastrado.')})}
-function newRequest(patientId=''){if(!db.patients.length){toast('Cadastre um paciente primeiro.');return}let opts=db.patients.map(p=>`<option value="${p.id}" ${Number(patientId)===p.id?'selected':''}>${p.name}</option>`).join('');openModal('Nova solicitação',`<div class="form-grid"><div class="field full"><label>Paciente</label><select name="patientId" required>${opts}</select></div><div class="field full"><label>Procedimento / especialidade</label><input name="procedure" placeholder="Ex.: Consulta em Neurologia" required></div><div class="field"><label>Prioridade</label><select name="priority"><option>Baixa</option><option selected>Média</option><option>Alta</option></select></div><div class="field"><label>Data</label><input name="date" type="date" value="${new Date().toISOString().slice(0,10)}" required></div><div class="field full"><label>Justificativa clínica</label><textarea name="notes" required></textarea></div></div><div class="modal-actions"><button type="button" class="ghost" onclick="closeModal()">Cancelar</button><button class="primary">Registrar solicitação</button></div>`,fd=>{let next=db.requests.reduce((m,r)=>Math.max(m,r.id),0)+1;db.requests.push({id:next,protocol:`REG-${new Date().getFullYear()}-${String(next).padStart(4,'0')}`,patientId:Number(fd.get('patientId')),procedure:fd.get('procedure'),priority:fd.get('priority'),date:fd.get('date'),status:'Aguardando',notes:fd.get('notes')});save();closeModal();toast('Solicitação registrada.');go('solicitacoes')})}
-function viewRequest(id){let r=db.requests.find(x=>x.id===id),p=pby(r.patientId);openModal('Detalhes da solicitação',`<div class="notice"><strong>${r.protocol}</strong><br>${p?.name||'-'} — ${r.procedure}</div><p><strong>Prioridade:</strong> ${r.priority}</p><p><strong>Status:</strong> ${r.status}</p><p><strong>Data:</strong> ${fmt(r.date)}</p><p><strong>Justificativa:</strong><br>${r.notes||'-'}</p><div class="modal-actions"><button type="button" class="ghost" onclick="closeModal()">Fechar</button></div>`,()=>{})}function setStatus(id,status){let r=db.requests.find(x=>x.id===id);if(!r)return;r.status=status;if(status==='Autorizada'&&!r.scheduled){let d=new Date();d.setDate(d.getDate()+7);r.scheduled=d.toISOString().slice(0,16)}save();toast('Solicitação '+status.toLowerCase()+'.')}
-window.newRequest=newRequest;window.newPatient=newPatient;window.viewRequest=viewRequest;window.setStatus=setStatus;window.closeModal=closeModal;$('#newPatient').onclick=newPatient;$('#quickPatient').onclick=newPatient;$('#newRequest').onclick=()=>newRequest();$('#quickRequest').onclick=()=>newRequest();
-</script>
+  </div>
+
+  <script src="v2.js?v=2.0.0"></script>
 </body>
 </html>
