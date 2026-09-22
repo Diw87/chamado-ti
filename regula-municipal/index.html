@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#0a6c5c">
   <meta name="description" content="Regula Municipal — gestão de pacientes, solicitações, fila e autorizações da regulação municipal.">
-  <title>Regula Municipal V2</title>
-  <link rel="stylesheet" href="v2.css?v=2.0.0">
+  <title>Regula Municipal V2.1</title>
+  <link rel="stylesheet" href="v2.css?v=2.1.0">
 </head>
 <body>
   <div id="loading" class="loading hidden"><div class="spinner" aria-label="Carregando"></div></div>
   <div id="toast" class="toast"></div>
 
-  <section id="authPage" class="auth-page">
+  <section id="authPage" class="auth-page hidden">
     <div class="auth-hero">
       <div class="auth-logo">RM</div>
       <h1>Regula Municipal</h1>
@@ -67,12 +67,12 @@
         <div class="sep"></div>
         <button data-page="users" data-admin>♚ <span>Usuários</span></button>
         <button data-page="reports">◩ <span>Relatórios</span></button>
-        <button data-page="account">⚙ <span>Minha conta</span></button>
+        <button data-page="account">⚙ <span>Modo teste</span></button>
       </nav>
       <div class="userbox">
         <strong id="sideUser">Usuário</strong>
         <small id="sideRole">Perfil</small>
-        <button id="logoutBtn">Sair do sistema</button>
+        <button id="logoutBtn">Reiniciar sessão</button>
       </div>
     </aside>
 
@@ -83,7 +83,7 @@
           <h2 id="pageTitle">Painel</h2>
           <p id="pageSubtitle"></p>
         </div>
-        <div class="top-actions">
+        <div class="top-actions"><span class="badge b-wait">Modo teste · sem login</span>
           <button class="secondary" data-action="newPatient" data-write>+ Paciente</button>
           <button class="primary" data-action="newRequest" data-write>+ Solicitação</button>
         </div>
@@ -102,6 +102,6 @@
     </div>
   </div>
 
-  <script src="v2.js?v=2.0.0"></script>
+  <script src="v2.js?v=2.1.0"></script>
 </body>
 </html>
